@@ -17,7 +17,7 @@ do
         echo "Skip $line"
     else
         scp joincommand.sh root@$line:/root
-        scp setup.py
+        scp setup.py root@$line:/root
         ssh root@$line -n "cd /root && python3 setup.py && ./joincommand"
         echo "Finished config node $line"
         echo "########################################################"
