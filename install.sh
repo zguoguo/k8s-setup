@@ -18,8 +18,8 @@ do
     else
         scp joincommand.sh root@$line:/root
         scp setup.py root@$line:/root
-        ssh root@$line -n "cd /root && python3 setup.py"
-        ssh root@$line -n "cd /root && ./joincommand.sh"
+        ssh -o "StrictHostKeyChecking no" root@$line -n "cd /root && python3 setup.py"
+        ssh -o "StrictHostKeyChecking no" root@$line -n "cd /root && ./joincommand.sh"
         echo "Finished config node $line"
         echo "########################################################"
     fi
