@@ -18,7 +18,7 @@ do
     else
         scp joincommand.sh root@$line:/root
         scp setup.py root@$line:/root
-        ssh root@$line -n "cd /root && python3 setup.py 
+        ssh root@$line -n "cd /root && python3 setup.py"
         ssh root@$line -n "cd /root && ./joincommand"
         echo "Finished config node $line"
         echo "########################################################"
