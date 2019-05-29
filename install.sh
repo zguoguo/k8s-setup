@@ -29,4 +29,3 @@ do
 done
 
 echo "Finished Installation"
-kubectl get nodes
