@@ -13,5 +13,7 @@ Assumptions are:
 * The master node can ssh into the worker nodes.
 
 * The workers file has been modified with the IPv4 Addresses of your current worker nodes.
+
+* Permissions on the install.sh file are modified to allow it to be executed.
     
-Other than that, just running the install.sh file on your master node and everything should work just fine.
+Other than that, just running the install.sh file on your master node should get everything working
