@@ -1,5 +1,4 @@
 # k8s-setup
-k8s setup test
 
 Hello Team, with this repository we will be able to build a 3 node kubernetes cluster
 that incorporates the Kubernetes Networking Model using Flannel.
