@@ -1,12 +1,6 @@
 #!/bin/sh
 
-apt-get update
-apt-get -y install docker docker.io
-systemctl enable docker
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
-apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-apt-get -y install kubeadm
-swapoff -a
+python3 setup.py
 kubeadm init --ignore-preflight-errors='all' --pod-network-cidr=10.244.0.0/16
 kubeadm token create --print-join-command > joincommand.sh
 chmod 755 joincommand.sh
