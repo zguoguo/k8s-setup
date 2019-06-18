@@ -18,3 +18,5 @@ Assumptions are:
 Other than that, just running the install.sh file on your master node should get everything working
 
 As note, the profile used to build this installation is called clusterTest6 and is available at CloudLab
+
+# Test time
