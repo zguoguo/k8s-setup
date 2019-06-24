@@ -4,10 +4,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import glob
+import sys
 
-def read(path):
-    dfs = []
-    file = glob.glob(path)[0]
+def read():
+    file = sys.stdin.read()
 #     for i in files:
 #         df = pd.read_csv(i)
 #         dfs.append(df)
@@ -40,8 +40,8 @@ def calc_contention(df, l):
 
 def main():
     # Location of the file which Yuqi generated
-    path = 'data/10vae.csv'
-    df,l = read(path)
+#     path = 'data/10vae.csv'
+    df,l = read()
     # gen_pics(df, l)
     contention = calc_contention(df, l)
     print("nodes: ", l)
