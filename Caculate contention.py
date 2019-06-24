@@ -5,9 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import glob
 
-# Location of the file which Yuqi generated
-path = 'data/10vae.csv'
-
 def read(path):
     dfs = []
     file = glob.glob(path)[0]
@@ -41,12 +38,16 @@ def calc_contention(df, l):
 
     return contention
 
+def main():
+    # Location of the file which Yuqi generated
+    path = 'data/10vae.csv'
+    df,l = read(path)
+    # gen_pics(df, l)
+    contention = calc_contention(df, l)
+    print("nodes: ", l)
+    for i in l:
+        df_new = df[df['node']==i]
+        print(f'complete time of {i}:', df_new['complete_time'].values)
+    print("contention: ", contention)
 
-df,l = read(path)
-# gen_pics(df, l)
-contention = calc_contention(df, l)
-print("nodes: ", l)
-for i in l:
-    df_new = df[df['node']==i]
-    print(f'complete time of {i}:', df_new['complete_time'].values)
-print("contention: ", contention)
+main()
