@@ -14,21 +14,6 @@ def read():
     df = pd.read_csv(file)
     l = list(set(df['node'].values))
     return df, l
-################################ Generate pics #####################################
-def timelines(y, xstart, xstop, color, label):
-    """Plot timelines at y from xstart to xstop with given color."""
-    plt.hlines(y, xstart, xstop, color, lw=4, label =label)
-#     plt.vlines(xstart, y+0.03, y-0.03, color, lw=2)
-#     plt.vlines(xstop, y+0.03, y-0.03, color, lw=2)
-def gen_pics(df, l):
-    clr = ['r', 'b']
-    #Plot ok tl black
-    for i,j in enumerate (l):
-        df_new = df[df['node']==j]
-        timelines(df_new['job'], df_new['start_time'], df_new['end_time'], clr[i], j)
-        plt.legend()
-    plt.savefig('test.pdf')
-####################################################################################
 
 def calc_contention(df, l):
     contention = []
@@ -43,7 +28,6 @@ def main():
     # Location of the file which Yuqi generated
 #     path = 'data/10vae.csv'
     df,l = read()
-    gen_pics(df, l)
     contention = calc_contention(df, l)
     print("nodes: ", l)
     for i in l:
