@@ -7,7 +7,7 @@ import glob
 import sys
 
 def read():
-    file = sys.stdin.read()
+    file = sys.stdin
 #     for i in files:
 #         df = pd.read_csv(i)
 #         dfs.append(df)
