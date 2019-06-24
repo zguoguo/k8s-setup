@@ -27,6 +27,7 @@ def gen_pics(df, l):
         df_new = df[df['node']==j]
         timelines(df_new['job'], df_new['start_time'], df_new['end_time'], clr[i], j)
         plt.legend()
+    plt.savefig('test.pdf')
 ####################################################################################
 
 def calc_contention(df, l):
@@ -42,7 +43,7 @@ def main():
     # Location of the file which Yuqi generated
 #     path = 'data/10vae.csv'
     df,l = read()
-    # gen_pics(df, l)
+    gen_pics(df, l)
     contention = calc_contention(df, l)
     print("nodes: ", l)
     for i in l:
