@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import cm
 import glob
 import sys
 
@@ -14,41 +15,33 @@ def read():
     df = pd.read_csv(file)
     l = list(set(df['node'].values))
     return df, l
-################################ Generate pics #####################################
 def timelines(y, xstart, xstop, color, label):
     """Plot timelines at y from xstart to xstop with given color."""
     plt.hlines(y, xstart, xstop, color, lw=4, label =label)
 #     plt.vlines(xstart, y+0.03, y-0.03, color, lw=2)
 #     plt.vlines(xstop, y+0.03, y-0.03, color, lw=2)
-def gen_pics(df, l):
-    clr = ['r', 'b']
+def all_in_one(df, l):
+    fig = plt.figure()
+    color=cm.rainbow(np.linspace(0,1,len(l)))
     #Plot ok tl black
-    for i,j in enumerate (l):
+    for i, j in enumerate(l):
         df_new = df[df['node']==j]
-        timelines(df_new['job'], df_new['start_time'], df_new['end_time'], clr[i], j)
+        timelines(df_new['job'], df_new['start_time'], df_new['end_time'], color[i], j)
         plt.legend()
-    plt.savefig('test.pdf')
-####################################################################################
+    fig.savefig('all_in_one.pdf')
 
-def calc_contention(df, l):
-    contention = []
-    for i,j in enumerate (l):
+def per_worker(df, l):
+    #Plot ok tl black
+    for i, j in enumerate(l):
+        fig = plt.figure()
         df_new = df[df['node']==j]
-        #\sum_(Time_Length_of_Overlapping) * (Number_of_Jobs - 1)
-        contention.append(sum(df_new['complete_time']) - (max(df_new['end_time'].values) - min(df_new['start_time'].values)))
-
-    return contention
+        timelines(df_new['job'], df_new['start_time'], df_new['end_time'], 'b', j)
+        fig.savefig(f'{j}.pdf')
 
 def main():
     # Location of the file which Yuqi generated
 #     path = 'data/10vae.csv'
     df,l = read()
-    gen_pics(df, l)
-    contention = calc_contention(df, l)
-    print("nodes: ", l)
-    for i in l:
-        df_new = df[df['node']==i]
-        print(f'complete time of {i}:', df_new['complete_time'].values)
-    print("contention: ", contention)
-
+    all_in_one(df, l)
+    per_worker(df, l)
 main()
